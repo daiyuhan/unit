@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>canvas</title>
+	<style>
+		*{margin: 0; padding: 0;}
+	</style>
+</head>
+
+<body>
+	<canvas id="myCanvas" width="500" height="500" style="overflow: hidden;display: block;"></canvas>
+	<script>
+		window.onload = function() {
+			var canvas = document.querySelector('#myCanvas');
+
+			canvas.setAttribute('width', window.innerWidth);
+			canvas.setAttribute('height', window.innerHeight);			
+			var ctx = canvas.getContext('2d');
+			
+			function getRandomNum(min, max){
+				return Math.round(Math.random()*(max-min) + min);
+			}
+			
+			function drawImg() {
+				var x = getRandomNum(0, window.innerWidth),
+					y = getRandomNum(0, window.innerHeight);
+					
+					ctx.beginPath();
+					ctx.moveTo(x, y);
+					ctx.arc(x, y, 100, Math.PI*0.15, Math.PI*1.85, false);
+					ctx.closePath();
+					ctx.stroke();
+
+					ctx.beginPath();
+					ctx.arc(x - 15, y - 45, 10, 0, Math.PI*2, false);
+					ctx.fill();
+					
+					ctx.beginPath();
+					ctx.arc(x - 15, y - 50, 20, 0, Math.PI*2, false);
+					ctx.stroke();
+			}
+			
+			setInterval(drawImg, 30);
+		}
+	</script>
+</body>
+
+</html>
